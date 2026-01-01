@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - JARVIS 2.0</title>
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- 
+        This is the simulation view template for the JARVIS 2.0 system.
+        
+        Purpose:
+        - Display results from Virtual Company Simulator
+        - Show asynchronous decision simulations across multiple companies
+        - Visualize consensus building and recommendation generation
+        - Provide controls for initiating new simulations
+        
+        Integration Points:
+        - simulation/company_simulator.py: VirtualCompany and ConglomerateSimulator
+        - API endpoint: /api/simulation/run (POST) - trigger simulations
+        - API endpoint: /api/simulation/results/<id> (GET) - fetch results
+        
+        Future Enhancements:
+        - Add real-time simulation progress tracking
+        - Implement company-specific filtering
+        - Add export functionality for simulation results
+        - Include historical simulation comparison
+    -->
+</head>
+<body>
+    <!-- 
+        =====================================================================
+        HEADER / NAVIGATION SECTION
+        =====================================================================
+    -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>JARVIS 2.0 Dashboard</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/simulation" class="active">Simulation</a></li>
+                <li><a href="/innovation">Innovation</a></li>
+                <li><a href="/core">Core Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 
+        =====================================================================
+        MAIN CONTENT AREA - SIMULATION VIEW
+        =====================================================================
+    -->
+    <main class="simulation-container">
+        <div class="page-header">
+            <h2>Virtual Company Simulation</h2>
+            <p>
+                Simulate decision-making across multiple virtual companies including 
+                Tesla, SpaceX, Google, Meta, PayPal, NASA, and more.
+            </p>
+        </div>
+
+        <!-- 
+            =================================================================
+            SIMULATION CONTROL PANEL
+            =================================================================
+            Interface for creating and configuring new simulations
+            
+            TODO: Connect form submission to /api/simulation/run endpoint
+        -->
+        <section class="control-panel">
+            <h3>New Simulation</h3>
+            <form id="simulation-form" class="simulation-form">
+                <div class="form-group">
+                    <label for="problem-input">Problem Statement:</label>
+                    <textarea 
+                        id="problem-input" 
+                        name="problem" 
+                        rows="4" 
+                        placeholder="Enter the problem to simulate (e.g., 'How to create carbon-neutral energy at scale')"
+                        required
+                    ></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Select Companies:</label>
+                    <div class="company-checkboxes">
+                        <label><input type="checkbox" name="companies" value="Tesla" checked> Tesla</label>
+                        <label><input type="checkbox" name="companies" value="SpaceX" checked> SpaceX</label>
+                        <label><input type="checkbox" name="companies" value="Google" checked> Google</label>
+                        <label><input type="checkbox" name="companies" value="Meta" checked> Meta</label>
+                        <label><input type="checkbox" name="companies" value="PayPal"> PayPal</label>
+                        <label><input type="checkbox" name="companies" value="NASA"> NASA</label>
+                        <label><input type="checkbox" name="companies" value="Microsoft"> Microsoft</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="iterations">Simulation Iterations:</label>
+                    <input 
+                        type="number" 
+                        id="iterations" 
+                        name="iterations" 
+                        min="1" 
+                        max="100" 
+                        value="10"
+                    >
+                </div>
+                
+                <button type="submit" class="action-btn primary">▶️ Run Simulation</button>
+            </form>
+        </section>
+
+        <!-- 
+            =================================================================
+            ACTIVE SIMULATIONS
+            =================================================================
+            Display currently running simulations with progress indicators
+            
+            TODO: Poll API for active simulation status
+        -->
+        <section class="active-simulations">
+            <h3>Active Simulations</h3>
+            <div class="simulation-list" id="active-simulations">
+                <div class="empty-state">
+                    <p>No active simulations</p>
+                    <p class="hint">Start a new simulation above to see results here</p>
+                </div>
+                <!-- 
+                    Placeholder for active simulation cards
+                    Each card will display:
+                    - Simulation ID
+                    - Problem statement
+                    - Progress bar
+                    - Participating companies
+                    - Estimated completion time
+                -->
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            SIMULATION RESULTS
+            =================================================================
+            Display completed simulation results with detailed analysis
+            
+            TODO: Fetch and display results from /api/simulation/results/<id>
+        -->
+        <section class="simulation-results">
+            <h3>Recent Results</h3>
+            <div class="results-list" id="simulation-results">
+                <div class="empty-state">
+                    <p>No completed simulations yet</p>
+                    <p class="hint">Results will appear here once simulations complete</p>
+                </div>
+                <!-- 
+                    Placeholder for simulation result cards
+                    Each result card will include:
+                    - Problem statement
+                    - Company decisions (individual perspectives)
+                    - Consensus analysis
+                    - Recommended actions
+                    - Confidence scores
+                    - Timeline of decision process
+                -->
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            SIMULATION INSIGHTS
+            =================================================================
+            Aggregate insights and patterns from multiple simulations
+        -->
+        <section class="simulation-insights">
+            <h3>Simulation Insights</h3>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Consensus Rate</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Average agreement across companies</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Avg. Iterations</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Mean iterations to reach consensus</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Top Contributor</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Most influential company perspective</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+        =====================================================================
+        FOOTER SECTION
+        =====================================================================
+    -->
+    <footer>
+        <p>&copy; 2026 JARVIS 2.0 - Conglomerate Brain</p>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <!-- 
+        Simulation-specific JavaScript
+        TODO: Implement actual API integration
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Simulation view initialized');
+            
+            // Handle simulation form submission
+            document.getElementById('simulation-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                runSimulation(this);
+            });
+            
+            // Load existing simulations
+            loadActiveSimulations();
+            loadSimulationResults();
+            
+            // Set up periodic refresh for active simulations
+            setInterval(loadActiveSimulations, 5000); // Refresh every 5 seconds
+        });
+        
+        // Placeholder function for running simulation
+        function runSimulation(form) {
+            console.log('Running simulation...');
+            // TODO: Submit to /api/simulation/run endpoint
+        }
+        
+        // Placeholder function for loading active simulations
+        function loadActiveSimulations() {
+            console.log('Loading active simulations...');
+            // TODO: Fetch from API
+        }
+        
+        // Placeholder function for loading results
+        function loadSimulationResults() {
+            console.log('Loading simulation results...');
+            // TODO: Fetch from API
+        }
+    </script>
+</body>
+</html>
