@@ -92,7 +92,7 @@ def schedule_task(task: Callable, interval: int) -> dict:
     if not callable(task):
         raise ValueError("Task must be a callable function")
 
-    if interval <= 0:
+    if not isinstance(interval, int) or interval <= 0:
         raise ValueError("Interval must be a positive integer (seconds)")
 
     schedule_info = {

@@ -4,6 +4,7 @@ scripts.preprocessing
 This module is responsible for handling data cleaning, normalization, and preparation routines for simulations and analyses.
 """
 
+import csv
 import json
 import os
 
@@ -39,8 +40,6 @@ def load_data(path):
             raise Exception(f"Error loading data from {path}: {str(e)}")
     elif file_extension == '.csv':
         try:
-            # Basic CSV parsing without pandas dependency
-            import csv
             with open(path, 'r', encoding='utf-8') as f:
                 reader = csv.DictReader(f)
                 data = list(reader)

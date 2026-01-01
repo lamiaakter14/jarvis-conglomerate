@@ -131,6 +131,9 @@ class TestAutomation:
         with pytest.raises(ValueError, match="Interval must be a positive integer"):
             schedule_task(sample_task, interval=0)
 
+        with pytest.raises(ValueError, match="Interval must be a positive integer"):
+            schedule_task(sample_task, interval=3.5)
+
 
 def test_scripts_placeholder():
     """Placeholder test for the scripts module."""
