@@ -1,5 +1,4 @@
 from typing import Dict, List, Any, Optional
-import logging
 from core.utils import setup_logger, handle_error
 
 class Research:
