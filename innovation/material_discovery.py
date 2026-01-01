@@ -111,4 +111,6 @@ class MaterialDiscovery:
 
         Placeholder for integration logic with simulation modules.
         """
-        self.logger.info(f"Integrating with simulation output: {simulation_output}")
+        # Log only metadata about the simulation output, not sensitive data
+        output_keys = list(simulation_output.keys()) if simulation_output else []
+        self.logger.info(f"Integrating with simulation output containing {len(output_keys)} fields")
