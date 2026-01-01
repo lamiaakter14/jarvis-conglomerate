@@ -17,11 +17,11 @@ class PhysicsEngine:
         """Initialize the physics engine."""
         print("PhysicsEngine initialized")
 
-    def apply_forces(self, objects: list) -> None:
+    def apply_forces(self, objects: List[Any]) -> None:
         """Simulate physics forces acting on objects.
         
         Args:
-            objects (list): List of objects to apply forces to.
+            objects (List[Any]): List of objects to apply forces to.
             
         Note:
             This is a placeholder method for future implementation.

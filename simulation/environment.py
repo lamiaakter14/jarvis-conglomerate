@@ -25,12 +25,12 @@ class Environment:
         self.objects: List[Any] = []
         self.parameters: Dict[str, Any] = {}
 
-    def update_state(self, changes: dict) -> None:
+    def update_state(self, changes: Dict[str, Any]) -> None:
         """Update the simulation state with the provided changes.
         
         Args:
-            changes (dict): Dictionary containing state changes. 
-                           Supported keys: 'time', 'objects', 'parameters'.
+            changes (Dict[str, Any]): Dictionary containing state changes. 
+                                      Supported keys: 'time', 'objects', 'parameters'.
         """
         if 'time' in changes:
             self.time = changes['time']
