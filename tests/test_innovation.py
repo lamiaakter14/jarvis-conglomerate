@@ -66,7 +66,7 @@ class TestMaterialDiscovery:
         assert result["status"] == "success"
         assert "predictions" in result
         assert result["properties"] == properties
-        assert "Starting material simulation" in caplog.text
+        assert "Starting material simulation with 2 properties" in caplog.text
         assert "Material simulation completed successfully" in caplog.text
     
     def test_optimize_material(self, caplog):
@@ -81,7 +81,7 @@ class TestMaterialDiscovery:
         assert result["original"] == properties
         assert "optimized" in result
         assert "improvements" in result
-        assert "Starting material optimization" in caplog.text
+        assert "Starting material optimization for 2 properties" in caplog.text
         assert "Material optimization completed successfully" in caplog.text
 
 

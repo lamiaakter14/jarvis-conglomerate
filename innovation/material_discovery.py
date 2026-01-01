@@ -45,7 +45,8 @@ class MaterialDiscovery:
             >>> print(result)
             {'status': 'success', 'predictions': {}, 'properties': {...}}
         """
-        self.logger.info(f"Starting material simulation with properties: {properties}")
+        # Log only metadata about the simulation, not sensitive property data
+        self.logger.info(f"Starting material simulation with {len(properties)} properties")
         
         # Placeholder for actual AI-driven simulation logic
         # Future implementation will include physics-based modeling,
@@ -78,7 +79,8 @@ class MaterialDiscovery:
             >>> print(optimized)
             {'status': 'optimized', 'original': {...}, 'optimized': {...}}
         """
-        self.logger.info(f"Starting material optimization for properties: {properties}")
+        # Log only metadata about the optimization, not sensitive property data
+        self.logger.info(f"Starting material optimization for {len(properties)} properties")
         
         # Placeholder for actual optimization logic
         # Future implementation will include genetic algorithms, gradient descent,
