@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Main Dashboard</title>
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- 
+        This is the main dashboard template for the JARVIS 2.0 system.
+        
+        Purpose:
+        - Serves as the primary landing page for the dashboard
+        - Displays overview metrics and system status
+        - Provides navigation to specialized views (simulation, innovation, core)
+        - Shows real-time updates and performance metrics
+        
+        Future Enhancements:
+        - Add real-time WebSocket connections for live updates
+        - Implement interactive charts and graphs
+        - Add user authentication and role-based access
+        - Integrate notification system
+    -->
+</head>
+<body>
+    <!-- 
+        =====================================================================
+        HEADER / NAVIGATION SECTION
+        =====================================================================
+        Contains the main navigation bar and system branding
+    -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>{{ title }}</h1>
+                <span class="version">v{{ version }}</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="active">Dashboard</a></li>
+                <li><a href="/simulation">Simulation</a></li>
+                <li><a href="/innovation">Innovation</a></li>
+                <li><a href="/core">Core Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 
+        =====================================================================
+        MAIN CONTENT AREA
+        =====================================================================
+        Primary content area for dashboard widgets and metrics
+    -->
+    <main class="dashboard-container">
+        <div class="welcome-section">
+            <h2>Welcome to JARVIS 2.0 Dashboard</h2>
+            <p>
+                Your centralized hub for multi-perspective analysis, virtual company 
+                simulation, and cross-pollination innovation breakthroughs.
+            </p>
+        </div>
+
+        <!-- 
+            =================================================================
+            METRICS OVERVIEW SECTION
+            =================================================================
+            Displays key performance indicators and system metrics
+            
+            TODO: Connect to real-time metrics API endpoint
+        -->
+        <section class="metrics-overview">
+            <h3>System Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-content">
+                        <h4>Total Analyses</h4>
+                        <p class="metric-value" id="total-analyses">0</p>
+                        <span class="metric-label">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">🔬</div>
+                    <div class="metric-content">
+                        <h4>Simulations</h4>
+                        <p class="metric-value" id="total-simulations">0</p>
+                        <span class="metric-label">Running</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">💡</div>
+                    <div class="metric-content">
+                        <h4>Innovations</h4>
+                        <p class="metric-value" id="total-innovations">0</p>
+                        <span class="metric-label">Generated</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-content">
+                        <h4>System Status</h4>
+                        <p class="metric-value status-healthy">Healthy</p>
+                        <span class="metric-label">Uptime: <span id="uptime">0h 0m</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            QUICK ACTIONS SECTION
+            =================================================================
+            Provides quick access to primary dashboard functions
+            
+            TODO: Wire up buttons to actual API endpoints
+        -->
+        <section class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="actions-grid">
+                <button class="action-btn" onclick="startAnalysis()">
+                    🧠 Start Analysis
+                </button>
+                <button class="action-btn" onclick="runSimulation()">
+                    🎯 Run Simulation
+                </button>
+                <button class="action-btn" onclick="generateInnovation()">
+                    ✨ Generate Innovation
+                </button>
+                <button class="action-btn" onclick="viewReports()">
+                    📈 View Reports
+                </button>
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            RECENT ACTIVITY SECTION
+            =================================================================
+            Shows recent system activities and results
+            
+            TODO: Populate with real activity data from API
+        -->
+        <section class="recent-activity">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+                <div class="activity-item placeholder">
+                    <span class="activity-icon">📝</span>
+                    <div class="activity-details">
+                        <p class="activity-title">Activity will appear here</p>
+                        <p class="activity-time">System activities will be tracked and displayed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            MODULE STATUS SECTION
+            =================================================================
+            Displays status of each integrated module
+        -->
+        <section class="module-status">
+            <h3>Module Status</h3>
+            <div class="status-grid">
+                <div class="status-card">
+                    <h4>Core Module</h4>
+                    <span class="status-indicator active">Active</span>
+                    <p>HybridJARVIS brain operational</p>
+                </div>
+                <div class="status-card">
+                    <h4>Simulation Module</h4>
+                    <span class="status-indicator active">Active</span>
+                    <p>Virtual company simulator ready</p>
+                </div>
+                <div class="status-card">
+                    <h4>Innovation Module</h4>
+                    <span class="status-indicator active">Active</span>
+                    <p>Cross-pollination engine online</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+        =====================================================================
+        FOOTER SECTION
+        =====================================================================
+    -->
+    <footer>
+        <p>&copy; 2026 JARVIS 2.0 - Conglomerate Brain | Version {{ version }}</p>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <!-- 
+        Initialize dashboard on page load
+        TODO: Add WebSocket connection for real-time updates
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('JARVIS Dashboard initialized');
+            // Load initial metrics
+            loadMetrics();
+            // Set up periodic refresh
+            setInterval(loadMetrics, 30000); // Refresh every 30 seconds
+        });
+    </script>
+</body>
+</html>

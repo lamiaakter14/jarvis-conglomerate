@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - JARVIS 2.0</title>
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- 
+        This is the innovation view template for the JARVIS 2.0 system.
+        
+        Purpose:
+        - Display results from Cross-Pollination Engine
+        - Show novel idea generation through technology stack mixing
+        - Visualize cross-company breakthrough synthesis (e.g., Elon × Bill)
+        - Provide interface for generating new innovations
+        
+        Integration Points:
+        - innovation/cross_pollinator.py: CrossPollinationEngine
+        - API endpoint: /api/innovation/generate (POST) - generate innovations
+        - API endpoint: /api/innovation/breakthroughs (GET) - fetch breakthroughs
+        
+        Future Enhancements:
+        - Add interactive idea mapping visualization
+        - Implement domain-specific filtering
+        - Add innovation rating and feedback system
+        - Include collaboration suggestions between domains
+    -->
+</head>
+<body>
+    <!-- 
+        =====================================================================
+        HEADER / NAVIGATION SECTION
+        =====================================================================
+    -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>JARVIS 2.0 Dashboard</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/simulation">Simulation</a></li>
+                <li><a href="/innovation" class="active">Innovation</a></li>
+                <li><a href="/core">Core Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 
+        =====================================================================
+        MAIN CONTENT AREA - INNOVATION VIEW
+        =====================================================================
+    -->
+    <main class="innovation-container">
+        <div class="page-header">
+            <h2>Cross-Pollination Innovation Engine</h2>
+            <p>
+                Generate breakthrough ideas by mixing technology stacks and 
+                combining perspectives from different companies and domains.
+            </p>
+        </div>
+
+        <!-- 
+            =================================================================
+            INNOVATION GENERATOR
+            =================================================================
+            Interface for creating new innovation breakthroughs
+            
+            TODO: Connect form submission to /api/innovation/generate endpoint
+        -->
+        <section class="innovation-generator">
+            <h3>Generate Innovation</h3>
+            <form id="innovation-form" class="innovation-form">
+                <div class="form-group">
+                    <label for="innovation-problem">Problem or Challenge:</label>
+                    <textarea 
+                        id="innovation-problem" 
+                        name="problem" 
+                        rows="4" 
+                        placeholder="Enter the problem or area for innovation (e.g., 'Sustainable space exploration')"
+                        required
+                    ></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Technology Domains:</label>
+                    <div class="domain-checkboxes">
+                        <label><input type="checkbox" name="domains" value="AI" checked> AI/ML</label>
+                        <label><input type="checkbox" name="domains" value="Energy" checked> Energy</label>
+                        <label><input type="checkbox" name="domains" value="Transportation"> Transportation</label>
+                        <label><input type="checkbox" name="domains" value="Healthcare"> Healthcare</label>
+                        <label><input type="checkbox" name="domains" value="Space"> Space Tech</label>
+                        <label><input type="checkbox" name="domains" value="Biotech"> Biotech</label>
+                        <label><input type="checkbox" name="domains" value="FinTech"> FinTech</label>
+                        <label><input type="checkbox" name="domains" value="Materials"> Materials</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Cross-Pollination Mode:</label>
+                    <select name="mode" id="cross-pollination-mode">
+                        <option value="automatic">Automatic (AI-selected combinations)</option>
+                        <option value="pairwise">Pairwise (Two domains at a time)</option>
+                        <option value="multi">Multi-domain (All selected domains)</option>
+                        <option value="random">Random (Unexpected combinations)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="innovation-count">Number of Ideas:</label>
+                    <input 
+                        type="number" 
+                        id="innovation-count" 
+                        name="count" 
+                        min="1" 
+                        max="20" 
+                        value="5"
+                    >
+                </div>
+                
+                <button type="submit" class="action-btn primary">✨ Generate Innovations</button>
+            </form>
+        </section>
+
+        <!-- 
+            =================================================================
+            BREAKTHROUGH SHOWCASE
+            =================================================================
+            Display generated innovation breakthroughs with details
+            
+            TODO: Fetch and display from /api/innovation/breakthroughs
+        -->
+        <section class="breakthroughs">
+            <h3>Innovation Breakthroughs</h3>
+            <div class="breakthrough-list" id="breakthrough-list">
+                <div class="empty-state">
+                    <p>No breakthroughs generated yet</p>
+                    <p class="hint">Use the form above to generate innovative ideas</p>
+                </div>
+                <!-- 
+                    Placeholder for breakthrough cards
+                    Each breakthrough card will include:
+                    - Innovation title
+                    - Description and rationale
+                    - Contributing domains/technologies
+                    - Potential impact assessment
+                    - Implementation complexity
+                    - Related concepts and synergies
+                    - Rating/voting system
+                -->
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            INNOVATION MATRIX
+            =================================================================
+            Visual representation of cross-domain combinations
+        -->
+        <section class="innovation-matrix">
+            <h3>Cross-Pollination Matrix</h3>
+            <div class="matrix-container">
+                <p class="placeholder-text">
+                    Interactive matrix visualization will show potential 
+                    combinations between different technology domains.
+                </p>
+                <!-- 
+                    TODO: Implement interactive matrix showing:
+                    - Technology domains on X and Y axes
+                    - Cell colors indicating synergy potential
+                    - Click to explore specific combinations
+                    - Highlight previously explored combinations
+                -->
+                <div class="matrix-grid placeholder">
+                    <div class="matrix-cell">AI × Energy</div>
+                    <div class="matrix-cell">AI × Space</div>
+                    <div class="matrix-cell">Energy × Transportation</div>
+                    <div class="matrix-cell">Healthcare × AI</div>
+                    <div class="matrix-cell">Biotech × Materials</div>
+                    <div class="matrix-cell">FinTech × Space</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            INNOVATION INSIGHTS
+            =================================================================
+            Statistics and patterns from innovation generation
+        -->
+        <section class="innovation-insights">
+            <h3>Innovation Insights</h3>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Total Breakthroughs</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Ideas generated across all domains</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Top Domain Combo</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Most productive cross-pollination</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Avg. Impact Score</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Mean potential impact rating</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Unexplored Combos</h4>
+                    <p class="insight-value">--</p>
+                    <p class="insight-description">Remaining domain combinations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+            =================================================================
+            RECENT INNOVATIONS
+            =================================================================
+            Timeline of recently generated innovations
+        -->
+        <section class="recent-innovations">
+            <h3>Recent Innovations</h3>
+            <div class="innovation-timeline" id="innovation-timeline">
+                <div class="empty-state">
+                    <p>Innovation timeline will appear here</p>
+                    <p class="hint">Track the evolution of breakthrough ideas over time</p>
+                </div>
+                <!-- 
+                    TODO: Display chronological list of innovations with:
+                    - Timestamp
+                    - Innovation summary
+                    - Contributing perspectives
+                    - Current status (concept/prototype/implemented)
+                -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+        =====================================================================
+        FOOTER SECTION
+        =====================================================================
+    -->
+    <footer>
+        <p>&copy; 2026 JARVIS 2.0 - Conglomerate Brain</p>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    
+    <!-- 
+        Innovation-specific JavaScript
+        TODO: Implement actual API integration
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Innovation view initialized');
+            
+            // Handle innovation form submission
+            document.getElementById('innovation-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                generateInnovation(this);
+            });
+            
+            // Load existing breakthroughs
+            loadBreakthroughs();
+            
+            // Set up periodic refresh
+            setInterval(loadBreakthroughs, 15000); // Refresh every 15 seconds
+        });
+        
+        // Placeholder function for generating innovation
+        function generateInnovation(form) {
+            console.log('Generating innovation...');
+            // TODO: Submit to /api/innovation/generate endpoint
+        }
+        
+        // Placeholder function for loading breakthroughs
+        function loadBreakthroughs() {
+            console.log('Loading breakthroughs...');
+            // TODO: Fetch from /api/innovation/breakthroughs endpoint
+        }
+    </script>
+</body>
+</html>
